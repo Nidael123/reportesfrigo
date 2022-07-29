@@ -1147,14 +1147,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="reportesfrigo.exe" size="1303552">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="reportesfrigo.exe" size="1302528">
       <assemblyIdentity name="reportesfrigo" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>HmMjOnUi8wmreIQTZ4hyoWWRsBWKy2I/17YPR5PUaJQ=</dsig:DigestValue>
+        <dsig:DigestValue>/1smAwAyqf1fWnG0bD8dNUDqCL94BH+WrI2t7Y4hKHs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
