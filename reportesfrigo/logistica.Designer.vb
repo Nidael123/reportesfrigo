@@ -70,7 +70,7 @@ Partial Class logistica
         Me.comcodpro = New System.Windows.Forms.ComboBox()
         Me.tallamarcada = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.txtuser = New System.Windows.Forms.TextBox()
         Me.cantcajeta = New System.Windows.Forms.TextBox()
         Me.cantmaster = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
@@ -554,13 +554,13 @@ Partial Class logistica
         Me.Label9.TabIndex = 50
         Me.Label9.Text = "TALLA MARCADA"
         '
-        'TextBox2
+        'txtuser
         '
-        Me.TextBox2.Location = New System.Drawing.Point(1170, 47)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(158, 20)
-        Me.TextBox2.TabIndex = 51
+        Me.txtuser.Location = New System.Drawing.Point(1170, 47)
+        Me.txtuser.Name = "txtuser"
+        Me.txtuser.ReadOnly = True
+        Me.txtuser.Size = New System.Drawing.Size(158, 20)
+        Me.txtuser.TabIndex = 51
         '
         'cantcajeta
         '
@@ -617,7 +617,7 @@ Partial Class logistica
         Me.Controls.Add(Me.Label19)
         Me.Controls.Add(Me.cantmaster)
         Me.Controls.Add(Me.cantcajeta)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.txtuser)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.tallamarcada)
         Me.Controls.Add(Me.comcodpro)
@@ -712,7 +712,7 @@ Partial Class logistica
     Friend WithEvents comcodpro As ComboBox
     Friend WithEvents tallamarcada As TextBox
     Friend WithEvents Label9 As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtuser As TextBox
     Friend WithEvents cantcajeta As TextBox
     Friend WithEvents cantmaster As TextBox
     Friend WithEvents Label19 As Label

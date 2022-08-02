@@ -58,7 +58,7 @@ Public Class logistica
             MessageBox.Show(ex.Message)
         Finally
             conexion2.Dispose()
-        command2.Dispose()
+            command2.Dispose()
         End Try
 
 
@@ -354,6 +354,8 @@ Public Class logistica
                     guardaritems(filas.Cells(10).Value.ToString, Convert.ToDecimal(filas.Cells(8).Value.ToString), filas.Cells(6).Value.ToString, filas.Cells(11).Value.ToString, filas.Cells(15).Value.ToString,
                     filas.Cells(14).Value.ToString, filas.Cells(5).Value.ToString, envase2, filas.Cells(0).Value.ToString, Convert.ToInt64(filas.Cells(3).Value.ToString), Convert.ToInt64(filas.Cells(2).Value.ToString),
                     filas.Cells(1).Value.ToString)
+                    guardarusuario(filas.Cells(10).Value.ToString, Convert.ToDecimal(filas.Cells(8).Value.ToString), filas.Cells(6).Value.ToString, filas.Cells(11).Value.ToString, filas.Cells(15).Value.ToString,
+                    filas.Cells(14).Value.ToString, filas.Cells(5).Value.ToString, envase2)
                 Next
 
                 'limpiar()
@@ -361,9 +363,9 @@ Public Class logistica
                 'crear_excel()
 
                 For i As Integer = DataGridView1.Rows.Count To 0 Step -1
-                        DataGridView1.Rows.RemoveAt(i)
-                        'inserto el valor a mover en la tabla y resto y sumo en las bodegas 
-                    Next
+                    DataGridView1.Rows.RemoveAt(i)
+                    'inserto el valor a mover en la tabla y resto y sumo en las bodegas 
+                Next
             End If
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
@@ -844,8 +846,8 @@ Public Class logistica
             adapter.SelectCommand = command
             adapter.Fill(op)
 
-            cantcajeta.Text = op.Rows(posicion).Item("cantidadcajeta").ToString()
-            cantmaster.Text = op.Rows(posicion).Item("cantidadmaster").ToString()
+            cantcajeta.Text = op.Rows(0).Item("cantidadcajeta").ToString()
+            cantmaster.Text = op.Rows(0).Item("cantidadmaster").ToString()
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
         Finally
@@ -853,5 +855,34 @@ Public Class logistica
             command.Dispose()
         End Try
     End Sub
+    Public Sub guardarusuario(deposito As String, cantidad As Decimal, lote As String, ubicacion As String, ubicaciondes As String, depositodes As String, talla As String, envases As String)
+        Dim conexion As New SqlConnection("Data Source=192.168.0.158;Initial Catalog=reportes;Persist Security Info=True;User ID=sa;Password=frigopesca2223+")
+        Dim adapter As New SqlDataAdapter
+        posicion = 0
+        Dim command As New SqlCommand("SP_GUARDARUSUARIO", conexion)
+        command.CommandType = CommandType.StoredProcedure
+        Dim op As New DataTable()
+        Try
+            If DataGridView1.Rows.Count < 1 Then
+                MessageBox.Show("Debe agregar mínimo una fila")
+            Else
 
+                command.Parameters.AddWithValue("@deposito", deposito)
+                command.Parameters.AddWithValue("@cantidad", cantidad)
+                command.Parameters.AddWithValue("@lote", lote)
+                command.Parameters.AddWithValue("@ubicacion", ubicacion)
+                command.Parameters.AddWithValue("@ubicaciondes", ubicaciondes)
+                command.Parameters.AddWithValue("@depositodes", depositodes)
+                command.Parameters.AddWithValue("@talla", talla)
+                command.Parameters.AddWithValue("@envase", envases)
+                conexion.Open()
+                command.ExecuteNonQuery()
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString)
+        Finally
+            conexion.Dispose()
+            command.Dispose()
+        End Try
+    End Sub
 End Class

@@ -25,6 +25,7 @@
                             Hide()
                         Else
                             logistica.Show()
+                            logistica.txtuser.Text = txtuser.Text
                             Hide()
 
                         End If
