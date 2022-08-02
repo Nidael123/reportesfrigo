@@ -224,6 +224,7 @@ Public Class logistica
         End Try
 
         despacho.Text = ordenes.Text
+        cargarsaldos()
     End Sub
 
     Private Sub TextBox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles master.KeyPress
@@ -235,6 +236,7 @@ Public Class logistica
     End Sub
 
     Private Sub btn_cajeta_Click(sender As Object, e As EventArgs) Handles btn_cajeta.Click
+
         Dim canti As Integer
         If cantidad.Text.Trim = "" Then
 
@@ -243,20 +245,25 @@ Public Class logistica
             canti = Convert.ToUInt64(cantidad.Text.Trim)
         End If
 
-        If cantidad.Text.Trim <> "" And canti > 0 Then
 
-            btn_master.Enabled = False
-            master.Text = 0
+        If cantidad.Text.Trim <> "" And canti > 0 And ordenes.Text.Length > 0 Then
+            If cantidad.Text <= cantcajeta.Text Then
+                btn_master.Enabled = False
+                master.Text = 0
 
-            caja.Text = cantidad.Text.ToString.TrimStart("0")
-            cantidad.Enabled = False
-            TextBox5.Text = ((Convert.ToDouble(caja.Text.Trim.ToString)) * (Convert.ToDouble(opglobal.Rows(0).Item("peso").ToString))).ToString
+                caja.Text = cantidad.Text.ToString.TrimStart("0")
+                cantidad.Enabled = False
+                TextBox5.Text = ((Convert.ToDouble(caja.Text.Trim.ToString)) * (Convert.ToDouble(opglobal.Rows(0).Item("peso").ToString))).ToString
+            Else
+                MessageBox.Show("la cantidad a transferir es mayor a la de del stock")
+            End If
+
         Else
-            MessageBox.Show("Debe ingresar una cantidad diferente de cero")
+            MessageBox.Show("Debe ingresar una cantidad diferente de cero y/o escojer una orden")
         End If
         envase = "Cajeta"
-    End Sub
 
+    End Sub
     Private Sub btn_master_Click(sender As Object, e As EventArgs) Handles btn_master.Click
         Dim canti As Integer
         If cantidad.Text.Trim = "" Then
@@ -264,15 +271,20 @@ Public Class logistica
         Else
             canti = Convert.ToUInt64(cantidad.Text.Trim)
         End If
-        If cantidad.Text.Trim <> "" And canti > 0 Then
-            btn_cajeta.Enabled = False
-            cantidad.Enabled = False
-            master.Text = cantidad.Text.ToString.TrimStart("0")
-            caja.Text = 0
-            'MessageBox.Show(Convert.ToDouble(opglobal.Rows(0).Item("peso").ToString))
-            TextBox5.Text = ((Convert.ToDouble(master.Text.Trim.ToString)) * (Convert.ToDouble(opglobal.Rows(0).Item("peso").ToString)) * (Convert.ToDouble(opglobal.Rows(0).Item("cajas").ToString))).ToString
+        If cantidad.Text.Trim <> "" And canti > 0 And ordenes.Text.Length > 0 Then
+            If cantidad.Text <= cantmaster.Text Then
+                btn_cajeta.Enabled = False
+                cantidad.Enabled = False
+                master.Text = cantidad.Text.ToString.TrimStart("0")
+                caja.Text = 0
+                'MessageBox.Show(Convert.ToDouble(opglobal.Rows(0).Item("peso").ToString))
+                TextBox5.Text = ((Convert.ToDouble(master.Text.Trim.ToString)) * (Convert.ToDouble(opglobal.Rows(0).Item("peso").ToString)) * (Convert.ToDouble(opglobal.Rows(0).Item("cajas").ToString))).ToString
+            Else
+                MessageBox.Show("Debe ingresar una cantidad diferente de cero y/o escojer una orden")
+            End If
+
         Else
-            MessageBox.Show("Debe ingresar primero una cantidad")
+            MessageBox.Show("Debe ingresar primero una cantidad diferente de cero y/o escojer una orden")
         End If
         envase = "Master"
     End Sub
@@ -344,12 +356,14 @@ Public Class logistica
                     filas.Cells(1).Value.ToString)
                 Next
 
-                limpiar()
-                crear_excel()
-                For i As Integer = 0 To DataGridView1.Rows.Count - 1
-                    DataGridView1.Rows.RemoveAt(i)
-                    'inserto el valor a mover en la tabla y resto y sumo en las bodegas 
-                Next
+                'limpiar()
+                'borrar()
+                'crear_excel()
+
+                For i As Integer = DataGridView1.Rows.Count To 0 Step -1
+                        DataGridView1.Rows.RemoveAt(i)
+                        'inserto el valor a mover en la tabla y resto y sumo en las bodegas 
+                    Next
             End If
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
@@ -363,8 +377,12 @@ Public Class logistica
         btn_cajeta.Enabled = True
         btn_master.Enabled = True
         cantidad.Enabled = True
-
+        combotalla.Items.Clear()
+        ordenes.Items.Clear()
         ComboBox1.Items.Clear()
+        combotalla.Text = ""
+        ordenes.Text = ""
+        tallamarcada.Text = ""
     End Sub
 
     Private Sub DEPOSITOORIGEN_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DEPOSITOORIGEN.SelectedIndexChanged
@@ -457,7 +475,8 @@ Public Class logistica
         UBICACIONDESTINO.SelectedIndex = -1
         comcodpro.Items.Clear()
         comboproductos.Items.Clear()
-
+        cantcajeta.Text = ""
+        cantmaster.Text = ""
         despacho.Text = ""
 
         unidad.Text = ""
@@ -498,6 +517,7 @@ Public Class logistica
 
     End Sub
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+
         validar_campos()
         If lleno = True Then
             Dim entrada = dtDataTable.NewRow()
@@ -527,8 +547,8 @@ Public Class logistica
             entrada("COSTO REPOSITORIO") = TextBox6.Text.ToString
             dtDataTable.Rows.Add(entrada)
             DataGridView1.DataSource = dtDataTable
-            'borrar()
-            'limpiar()
+            borrar()
+            limpiar()
         Else
             MessageBox.Show("Por favor llene todos los campos")
         End If
@@ -760,21 +780,18 @@ Public Class logistica
             MessageBox.Show("Error al buscar los lotes")
         Finally
             conexion6.Dispose()
-        command6.Dispose()
+            command6.Dispose()
         End Try
 
     End Sub
-
     Private Sub comboproductos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboproductos.SelectedIndexChanged
         Dim d As Integer
         d = comboproductos.SelectedIndex
         comcodpro.SelectedIndex = d
     End Sub
-
     Private Sub combotalla_SelectedIndexChanged(sender As Object, e As EventArgs) Handles combotalla.SelectedIndexChanged
         tallamarcada.Text = combotalla.Text
     End Sub
-
     Public Sub guardaritems(deposito As String, cantidad As Decimal, lote As String, ubicacion As String, ubicaciondes As String, depositodes As String, talla As String, envases As String, codigopro As String, cantidadcajetas As Int64, cantidadmas As Int64, producto As String)
         Dim conexion As New SqlConnection("Data Source=192.168.0.158;Initial Catalog=reportes;Persist Security Info=True;User ID=sa;Password=frigopesca2223+")
         Dim adapter As New SqlDataAdapter
@@ -808,4 +825,33 @@ Public Class logistica
             command.Dispose()
         End Try
     End Sub
+
+    Public Sub cargarsaldos()
+        Dim conexion As New SqlConnection("Data Source=192.168.0.158;Initial Catalog=reportes;Persist Security Info=True;User ID=sa;Password=frigopesca2223+")
+        Dim adapter As New SqlDataAdapter
+        posicion = 0
+        Dim command As New SqlCommand("SP_SALDOCAJAMASTER", conexion)
+        command.CommandType = CommandType.StoredProcedure
+        command.Parameters.AddWithValue("@deposito", DEPOSITOORIGEN.SelectedItem)
+        command.Parameters.AddWithValue("@lote", ComboBox1.SelectedItem)
+        command.Parameters.AddWithValue("@talla", combotalla.SelectedItem)
+        command.Parameters.AddWithValue("@codigoproducto", comcodpro.SelectedItem)
+        conexion.Open()
+        command.ExecuteNonQuery()
+        Dim op As New DataTable()
+        Try
+
+            adapter.SelectCommand = command
+            adapter.Fill(op)
+
+            cantcajeta.Text = op.Rows(posicion).Item("cantidadcajeta").ToString()
+            cantmaster.Text = op.Rows(posicion).Item("cantidadmaster").ToString()
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString)
+        Finally
+            conexion.Dispose()
+            command.Dispose()
+        End Try
+    End Sub
+
 End Class
