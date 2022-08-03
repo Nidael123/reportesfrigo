@@ -222,9 +222,9 @@ Public Class logistica
             conexion.Dispose()
             Command.Dispose()
         End Try
+        despacho.Text = ordenes.SelectedItem
 
-        despacho.Text = ordenes.Text
-        cargarsaldos()
+
     End Sub
 
     Private Sub TextBox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles master.KeyPress
@@ -247,7 +247,7 @@ Public Class logistica
 
 
         If cantidad.Text.Trim <> "" And canti > 0 And ordenes.Text.Length > 0 Then
-            If cantidad.Text <= cantcajeta.Text Then
+            If Convert.ToInt64(cantidad.Text) <= Convert.ToInt64(cantcajeta.Text) Then
                 btn_master.Enabled = False
                 master.Text = 0
 
@@ -272,7 +272,7 @@ Public Class logistica
             canti = Convert.ToUInt64(cantidad.Text.Trim)
         End If
         If cantidad.Text.Trim <> "" And canti > 0 And ordenes.Text.Length > 0 Then
-            If cantidad.Text <= cantmaster.Text Then
+            If Convert.ToInt64(cantidad.Text) <= Convert.ToInt64(cantmaster.Text) Then
                 btn_cajeta.Enabled = False
                 cantidad.Enabled = False
                 master.Text = cantidad.Text.ToString.TrimStart("0")
@@ -355,22 +355,20 @@ Public Class logistica
                     filas.Cells(14).Value.ToString, filas.Cells(5).Value.ToString, envase2, filas.Cells(0).Value.ToString, Convert.ToInt64(filas.Cells(3).Value.ToString), Convert.ToInt64(filas.Cells(2).Value.ToString),
                     filas.Cells(1).Value.ToString)
                     guardarusuario(filas.Cells(10).Value.ToString, Convert.ToDecimal(filas.Cells(8).Value.ToString), filas.Cells(6).Value.ToString, filas.Cells(11).Value.ToString, filas.Cells(15).Value.ToString,
-                    filas.Cells(14).Value.ToString, filas.Cells(5).Value.ToString, envase2)
+                    filas.Cells(14).Value.ToString, filas.Cells(5).Value.ToString, envase2, filas.Cells(0).Value.ToString)
                 Next
 
-                'limpiar()
-                'borrar()
+                limpiar()
+                borrar()
                 'crear_excel()
 
-                For i As Integer = DataGridView1.Rows.Count To 0 Step -1
+                For i As Integer = DataGridView1.Rows.Count - 1 To 0 Step -1
                     DataGridView1.Rows.RemoveAt(i)
-                    'inserto el valor a mover en la tabla y resto y sumo en las bodegas 
                 Next
             End If
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
         Finally
-
             command.Dispose()
         End Try
     End Sub
@@ -608,6 +606,9 @@ Public Class logistica
         Dim op As New DataTable()
         command.CommandType = CommandType.StoredProcedure
         command.Parameters.AddWithValue("@lote", ComboBox1.Text)
+        command.Parameters.AddWithValue("@deposito", DEPOSITOORIGEN.SelectedItem)
+        command.Parameters.AddWithValue("@ubicacion", UBICACIONORIGEN.SelectedItem)
+        command.Parameters.AddWithValue("@codigoprod", comcodpro.SelectedItem)
         Dim adapter As New SqlDataAdapter
 
         posicion = 0
@@ -793,6 +794,7 @@ Public Class logistica
     End Sub
     Private Sub combotalla_SelectedIndexChanged(sender As Object, e As EventArgs) Handles combotalla.SelectedIndexChanged
         tallamarcada.Text = combotalla.Text
+        cargarsaldos()
     End Sub
     Public Sub guardaritems(deposito As String, cantidad As Decimal, lote As String, ubicacion As String, ubicaciondes As String, depositodes As String, talla As String, envases As String, codigopro As String, cantidadcajetas As Int64, cantidadmas As Int64, producto As String)
         Dim conexion As New SqlConnection("Data Source=192.168.0.158;Initial Catalog=reportes;Persist Security Info=True;User ID=sa;Password=frigopesca2223+")
@@ -829,6 +831,7 @@ Public Class logistica
     End Sub
 
     Public Sub cargarsaldos()
+
         Dim conexion As New SqlConnection("Data Source=192.168.0.158;Initial Catalog=reportes;Persist Security Info=True;User ID=sa;Password=frigopesca2223+")
         Dim adapter As New SqlDataAdapter
         posicion = 0
@@ -855,18 +858,21 @@ Public Class logistica
             command.Dispose()
         End Try
     End Sub
-    Public Sub guardarusuario(deposito As String, cantidad As Decimal, lote As String, ubicacion As String, ubicaciondes As String, depositodes As String, talla As String, envases As String)
+    Public Sub guardarusuario(deposito As String, cantidad As Decimal, lote As String, ubicacion As String, ubicaciondes As String, depositodes As String, talla As String, envases As String, codigopro As String)
         Dim conexion As New SqlConnection("Data Source=192.168.0.158;Initial Catalog=reportes;Persist Security Info=True;User ID=sa;Password=frigopesca2223+")
         Dim adapter As New SqlDataAdapter
         posicion = 0
         Dim command As New SqlCommand("SP_GUARDARUSUARIO", conexion)
         command.CommandType = CommandType.StoredProcedure
         Dim op As New DataTable()
+
+
+
         Try
             If DataGridView1.Rows.Count < 1 Then
                 MessageBox.Show("Debe agregar mínimo una fila")
             Else
-
+                command.Parameters.AddWithValue("@usuario", txtuser.Text)
                 command.Parameters.AddWithValue("@deposito", deposito)
                 command.Parameters.AddWithValue("@cantidad", cantidad)
                 command.Parameters.AddWithValue("@lote", lote)
@@ -875,6 +881,9 @@ Public Class logistica
                 command.Parameters.AddWithValue("@depositodes", depositodes)
                 command.Parameters.AddWithValue("@talla", talla)
                 command.Parameters.AddWithValue("@envase", envases)
+                command.Parameters.AddWithValue("@codigoproducto", codigopro)
+                command.Parameters.AddWithValue("@cantidadcajeta", caja.Text)
+                command.Parameters.AddWithValue("@cantidadmaster", master.Text)
                 conexion.Open()
                 command.ExecuteNonQuery()
             End If
