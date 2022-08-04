@@ -8,6 +8,8 @@ Public Class logistica
     Dim posicion As Integer
     Public lleno As Boolean
     Public dtDataTable As New DataTable
+    Dim cantidadcajas As Int64
+    Dim cantidadmaster As Int64
     Private Sub Button1_Click(sender As Object, e As EventArgs)
 
 
@@ -845,12 +847,13 @@ Public Class logistica
         command.ExecuteNonQuery()
         Dim op As New DataTable()
         Try
-
             adapter.SelectCommand = command
             adapter.Fill(op)
 
             cantcajeta.Text = op.Rows(0).Item("cantidadcajeta").ToString()
             cantmaster.Text = op.Rows(0).Item("cantidadmaster").ToString()
+            cantidadmaster = op.Rows(0).Item("cantidadmaster").ToString()
+            cantidadcajas = op.Rows(0).Item("cantidadcajeta").ToString()
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
         Finally
@@ -867,7 +870,6 @@ Public Class logistica
         Dim op As New DataTable()
 
 
-
         Try
             If DataGridView1.Rows.Count < 1 Then
                 MessageBox.Show("Debe agregar mínimo una fila")
@@ -882,8 +884,8 @@ Public Class logistica
                 command.Parameters.AddWithValue("@talla", talla)
                 command.Parameters.AddWithValue("@envase", envases)
                 command.Parameters.AddWithValue("@codigoproducto", codigopro)
-                command.Parameters.AddWithValue("@cantidadcajeta", caja.Text)
-                command.Parameters.AddWithValue("@cantidadmaster", master.Text)
+                command.Parameters.AddWithValue("@cantidadcajeta", cantidadcajas)
+                command.Parameters.AddWithValue("@cantidadmaster", cantidadmaster)
                 conexion.Open()
                 command.ExecuteNonQuery()
             End If
