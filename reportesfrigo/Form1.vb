@@ -46,12 +46,6 @@
             MsgBox(ex.ToString)
         End Try
     End Sub
-
-
-
-
-
-
     Private Sub Form1_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         conexion.Close()
     End Sub
