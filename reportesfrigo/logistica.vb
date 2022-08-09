@@ -63,62 +63,6 @@ Public Class logistica
             command2.Dispose()
         End Try
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         'Dim conexion As New SqlConnection("Data Source=192.168.0.158;Initial Catalog=reportes;Persist Security Info=True;User ID=sa;Password=frigopesca2223+")
         'Dim command As New SqlCommand("SP_CARGARTALLA", conexion)
         'Dim op As New DataTable()
@@ -519,43 +463,47 @@ Public Class logistica
 
     End Sub
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim valor As Boolean
+        valor = buscarreservado(DEPOSITOORIGEN.Text, TextBox5.Text, ComboBox1.Text, UBICACIONORIGEN.Text, combotalla.Text, envase, comcodpro.Text, caja.Text, master.Text)
+        If valor = True Then
+            validar_campos()
+            If lleno = True Then
+                Dim entrada = dtDataTable.NewRow()
+                If btn_cajeta.Enabled = True Then
+                    entrada("ENVASE") = "C01 - Cajeta"
 
-        validar_campos()
-        If lleno = True Then
-            Dim entrada = dtDataTable.NewRow()
-            If btn_cajeta.Enabled = True Then
-                entrada("ENVASE") = "C01 - Cajeta"
+                Else
+                    entrada("ENVASE") = "M01 - Master"
+                End If
 
+
+                entrada("PRODUCTO") = comcodpro.Text
+                entrada("DESCRIPCIÓN") = comboproductos.Text
+                entrada("DESPACHO") = despacho.Text
+                entrada("TALLA") = combotalla.Text
+                entrada("UNIDAD MEDIDA") = unidad.Text
+                entrada("CANTIDAD") = TextBox5.Text
+                entrada("CANT. MASTERS") = master.Text
+                entrada("CANT. CAJAS/FUNDAS") = caja.Text
+                entrada("TALLA MARCADA") = tallamarcada.Text
+                entrada("LOTE") = ComboBox1.Text
+                entrada("LOTE MARCADO") = TextBox1.Text
+                entrada("DEPÓSITO ORIGEN") = DEPOSITOORIGEN.Text
+                entrada("UBICACIÓN ORIGEN") = UBICACIONORIGEN.Text
+                entrada("DEPÓSITO DESTINO") = DEPOSITODESTINO.Text
+                entrada("UBICACIÓN DESTINO") = UBICACIONDESTINO.Text
+                entrada("COSTO REPOSITORIO") = TextBox6.Text.ToString
+                dtDataTable.Rows.Add(entrada)
+                DataGridView1.DataSource = dtDataTable
+                guardarreserva(DEPOSITOORIGEN.Text, TextBox5.Text, ComboBox1.Text, UBICACIONORIGEN.Text, combotalla.Text, envase, comcodpro.Text, caja.Text, master.Text)
+                borrar()
+                limpiar()
             Else
-                entrada("ENVASE") = "M01 - Master"
+                MessageBox.Show("Por favor llene todos los campos")
             End If
-
-
-            entrada("PRODUCTO") = comcodpro.Text
-            entrada("DESCRIPCIÓN") = comboproductos.Text
-            entrada("DESPACHO") = despacho.Text
-            entrada("TALLA") = combotalla.Text
-            entrada("UNIDAD MEDIDA") = unidad.Text
-            entrada("CANTIDAD") = TextBox5.Text
-            entrada("CANT. MASTERS") = master.Text
-            entrada("CANT. CAJAS/FUNDAS") = caja.Text
-            entrada("TALLA MARCADA") = tallamarcada.Text
-            entrada("LOTE") = ComboBox1.Text
-            entrada("LOTE MARCADO") = TextBox1.Text
-            entrada("DEPÓSITO ORIGEN") = DEPOSITOORIGEN.Text
-            entrada("UBICACIÓN ORIGEN") = UBICACIONORIGEN.Text
-            entrada("DEPÓSITO DESTINO") = DEPOSITODESTINO.Text
-            entrada("UBICACIÓN DESTINO") = UBICACIONDESTINO.Text
-            entrada("COSTO REPOSITORIO") = TextBox6.Text.ToString
-            dtDataTable.Rows.Add(entrada)
-            DataGridView1.DataSource = dtDataTable
-            guardarreserva(DEPOSITOORIGEN.Text, TextBox5.Text, ComboBox1.Text, UBICACIONORIGEN.Text, combotalla.Text, envase, comcodpro.Text, caja.Text, master.Text)
-            borrar()
-            limpiar()
         Else
-            MessageBox.Show("Por favor llene todos los campos")
+            MessageBox.Show("el valor a sido escojido en otra transaccion espere que termine e intente otra vez ")
         End If
-
     End Sub
 
     Private Sub Label12_Click(sender As Object, e As EventArgs) Handles Label12.Click
@@ -744,12 +692,10 @@ Public Class logistica
             command4.Dispose()
         End Try
     End Sub
-
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         limpiar()
         borrar()
     End Sub
-
     Private Sub comcodpro_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comcodpro.SelectedIndexChanged
         Dim d As Integer
         d = comcodpro.SelectedIndex
@@ -896,16 +842,6 @@ Public Class logistica
             command.Dispose()
         End Try
     End Sub
-    '@producto varchar(50),
-    '@deposito  varchar(50),
-    '@cantidad float,
-    '@lote varchar(50),
-    '@ubicacion varchar(50),
-    '@talla varchar(50),
-    '@envase varchar(50),
-    '@codigoproducto varchar(50),
-    '@cantidadcajeta int,
-    '@cantidadmaster int
     Public Sub guardarreserva(deposito As String, cantidad As Decimal, lote As String, ubicacion As String, talla As String, envases As String, codigopro As String, caja As Int64, master As Int64)
         Dim conexion As New SqlConnection("Data Source=192.168.0.158;Initial Catalog=reportes;Persist Security Info=True;User ID=sa;Password=frigopesca2223+")
         Dim adapter As New SqlDataAdapter
@@ -937,38 +873,54 @@ Public Class logistica
         End Try
     End Sub
 
-    'Public Function buscarreservado(deposito As String, cantidad As Decimal, lote As String, ubicacion As String, talla As String, envases As String, codigopro As String, caja As Int64, master As Int64) As Boolean 'reviso si hay productos reservados si nohay los añado 
-    '    Dim conexion As New SqlConnection("Data Source=192.168.0.158;Initial Catalog=reportes;Persist Security Info=True;User ID=sa;Password=frigopesca2223+")
-    '    Dim adapter As New SqlDataAdapter
-    '    posicion = 0
-    '    Dim command As New SqlCommand("SP_GUARDARUSUARIO", conexion)
-    '    command.CommandType = CommandType.StoredProcedure
-    '    Dim op As New DataTable()
-    '    Try
-    '        If DataGridView1.Rows.Count < 1 Then
-    '            MessageBox.Show("Debe agregar mínimo una fila")
-    '        Else
-    '            command.Parameters.AddWithValue("@usuario", txtuser.Text)
-    '            command.Parameters.AddWithValue("@deposito", deposito)
-    '            command.Parameters.AddWithValue("@cantidad", cantidad)
-    '            command.Parameters.AddWithValue("@lote", lote)
-    '            command.Parameters.AddWithValue("@ubicacion", ubicacion)
-    '            command.Parameters.AddWithValue("@talla", talla)
-    '            command.Parameters.AddWithValue("@envase", envases)
-    '            command.Parameters.AddWithValue("@codigoproducto", codigopro)
-    '            command.Parameters.AddWithValue("@cantidadcajeta", caja)
-    '            command.Parameters.AddWithValue("@cantidadmaster", master)
-    '            conexion.Open()
-    '            command.ExecuteNonQuery()
-    '        End If
-    '    Catch ex As Exception
-    '        MessageBox.Show(ex.ToString)
-    '    Finally
-    '        conexion.Dispose()
-    '        command.Dispose()
-    '    End Try
-    'End Function
+    Public Function buscarreservado(deposito As String, cantidad As Decimal, lote As String, ubicacion As String, talla As String, envases As String, codigopro As String, cajas As Int64, masters As Int64) As Boolean 'reviso si hay productos reservados si nohay los añado 
+        Dim valor As Boolean
+        Dim conexion As New SqlConnection("Data Source=192.168.0.158;Initial Catalog=reportes;Persist Security Info=True;User ID=sa;Password=frigopesca2223+")
+        Dim adapter As New SqlDataAdapter
+        posicion = 0
+        Dim command As New SqlCommand("SP_BUSCARRESERVA", conexion)
+        command.CommandType = CommandType.StoredProcedure
+        Dim op As New DataTable()
+        Try
+            command.Parameters.AddWithValue("@deposito", deposito)
+            command.Parameters.AddWithValue("@lote", lote)
+            command.Parameters.AddWithValue("@ubicacion", ubicacion)
+            command.Parameters.AddWithValue("@talla", talla)
+            command.Parameters.AddWithValue("@envase", envases)
+            command.Parameters.AddWithValue("@codigoproducto", codigopro)
+            conexion.Open()
+            command.ExecuteNonQuery()
+            adapter.SelectCommand = command
+            adapter.Fill(op)
+            opglobal = op
+            If op.Rows(0).Item("cajetas") = "a" And op.Rows(0).Item("cajetas") = "a" Then
+                valor = False
+            Else
+                If Convert.ToDecimal(master.Text) <> "0" Then
+                    'trabajo con los master
 
+                    If Convert.ToDecimal(cantmaster.Text) - Convert.ToDecimal(op.Rows(0).Item("master")) >= Convert.ToDecimal(master.Text) Then
+                        valor = True
+                    Else
+                        valor = False
+                    End If
+                Else
+                    'trabajo con los cajetas
+                    If Convert.ToDecimal(cantcajeta.Text) - Convert.ToDecimal(op.Rows(0).Item("cajetas")) >= Convert.ToDecimal(caja.Text) Then
+                        valor = True
+                    Else
+                        valor = False
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString)
+        Finally
+            conexion.Dispose()
+            command.Dispose()
+        End Try
+        Return valor
+    End Function
 
     Public Sub cargarsaldo()
 
