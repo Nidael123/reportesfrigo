@@ -875,6 +875,7 @@ Public Class logistica
                 command.Parameters.AddWithValue("@codigoproducto", codigopro)
                 command.Parameters.AddWithValue("@cantidadcajeta", caja)
                 command.Parameters.AddWithValue("@cantidadmaster", master)
+                command.Parameters.AddWithValue("@usuario", txtuser.Text)
                 conexion.Open()
                 command.ExecuteNonQuery()
             End If
@@ -907,7 +908,7 @@ Public Class logistica
             adapter.Fill(op)
             opglobal = op
             If op.Rows(0).Item("cajetas") <= -1 And op.Rows(0).Item("master") <= -1 Then
-                valor = False
+                valor = True
             Else
                 If Convert.ToDecimal(master.Text) <> "0" Then
                     'trabajo con los master
@@ -969,16 +970,12 @@ Public Class logistica
             Else
                 command.Parameters.AddWithValue("@usuario", txtuser.Text)
                 command.Parameters.AddWithValue("@deposito", deposito)
-                command.Parameters.AddWithValue("@cantidad", cantidad)
+
                 command.Parameters.AddWithValue("@lote", lote)
                 command.Parameters.AddWithValue("@ubicacion", ubicacion)
-                command.Parameters.AddWithValue("@ubicaciondes", ubicaciondes)
-                command.Parameters.AddWithValue("@depositodes", depositodes)
                 command.Parameters.AddWithValue("@talla", talla)
                 command.Parameters.AddWithValue("@envase", envases)
                 command.Parameters.AddWithValue("@codigoproducto", codigopro)
-                command.Parameters.AddWithValue("@cantidadcajeta", caja)
-                command.Parameters.AddWithValue("@cantidadmaster", master)
                 conexion.Open()
                 command.ExecuteNonQuery()
             End If
