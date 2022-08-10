@@ -10,6 +10,8 @@ Public Class logistica
     Public dtDataTable As New DataTable
     Dim cantidadcajas As Int64
     Dim cantidadmaster As Int64
+    Dim peso As Double
+    Dim cajetas As Int64
     Private Sub Button1_Click(sender As Object, e As EventArgs)
 
 
@@ -162,6 +164,8 @@ Public Class logistica
             opglobal = op
 
             unidad.Text = opglobal.Rows(0).Item("unidad").ToString()
+            peso = Convert.ToDouble(opglobal.Rows(0).Item("peso").ToString)
+            cajetas = Convert.ToInt64(opglobal.Rows(0).Item("cajas").ToString)
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         Finally
@@ -199,7 +203,7 @@ Public Class logistica
 
                 caja.Text = cantidad.Text.ToString.TrimStart("0")
                 cantidad.Enabled = False
-                TextBox5.Text = ((Convert.ToDouble(caja.Text.Trim.ToString)) * (Convert.ToDouble(opglobal.Rows(0).Item("peso").ToString))).ToString
+                TextBox5.Text = ((Convert.ToDouble(caja.Text.Trim.ToString)) * peso).ToString
             Else
                 MessageBox.Show("la cantidad a transferir es mayor a la de del stock")
             End If
@@ -211,6 +215,8 @@ Public Class logistica
 
     End Sub
     Private Sub btn_master_Click(sender As Object, e As EventArgs) Handles btn_master.Click
+        Dim op As DataTable
+        op = opglobal
         Dim canti As Integer
         If cantidad.Text.Trim = "" Then
             canti = 0
@@ -224,7 +230,7 @@ Public Class logistica
                 master.Text = cantidad.Text.ToString.TrimStart("0")
                 caja.Text = 0
                 'MessageBox.Show(Convert.ToDouble(opglobal.Rows(0).Item("peso").ToString))
-                TextBox5.Text = ((Convert.ToDouble(master.Text.Trim.ToString)) * (Convert.ToDouble(opglobal.Rows(0).Item("peso").ToString)) * (Convert.ToDouble(opglobal.Rows(0).Item("cajas").ToString))).ToString
+                TextBox5.Text = ((Convert.ToDouble(master.Text.Trim.ToString)) * (peso) * cajetas).ToString
             Else
                 MessageBox.Show("Debe ingresar una cantidad diferente de cero y/o escojer una orden")
             End If
@@ -300,7 +306,11 @@ Public Class logistica
                     guardaritems(filas.Cells(10).Value.ToString, Convert.ToDecimal(filas.Cells(8).Value.ToString), filas.Cells(6).Value.ToString, filas.Cells(11).Value.ToString, filas.Cells(15).Value.ToString,
                     filas.Cells(14).Value.ToString, filas.Cells(5).Value.ToString, envase2, filas.Cells(0).Value.ToString, Convert.ToInt64(filas.Cells(3).Value.ToString), Convert.ToInt64(filas.Cells(2).Value.ToString),
                     filas.Cells(1).Value.ToString)
+
                     guardarusuario(filas.Cells(10).Value.ToString, Convert.ToDecimal(filas.Cells(8).Value.ToString), filas.Cells(6).Value.ToString, filas.Cells(11).Value.ToString, filas.Cells(15).Value.ToString,
+                    filas.Cells(14).Value.ToString, filas.Cells(5).Value.ToString, envase2, filas.Cells(0).Value.ToString, Convert.ToInt64(filas.Cells(3).Value.ToString), Convert.ToInt64(filas.Cells(2).Value.ToString))
+
+                    eliminarreserva(filas.Cells(10).Value.ToString, Convert.ToDecimal(filas.Cells(8).Value.ToString), filas.Cells(6).Value.ToString, filas.Cells(11).Value.ToString, filas.Cells(15).Value.ToString,
                     filas.Cells(14).Value.ToString, filas.Cells(5).Value.ToString, envase2, filas.Cells(0).Value.ToString, Convert.ToInt64(filas.Cells(3).Value.ToString), Convert.ToInt64(filas.Cells(2).Value.ToString))
                 Next
 
@@ -503,6 +513,13 @@ Public Class logistica
             End If
         Else
             MessageBox.Show("el valor a sido escojido en otra transaccion espere que termine e intente otra vez ")
+            cantidad.Text = ""
+            btn_cajeta.Enabled = True
+            btn_master.Enabled = True
+            'master.Text = ""
+            'caja.Text = ""
+            'TextBox5.Text = ""
+            cantidad.Enabled = True
         End If
     End Sub
 
@@ -533,10 +550,6 @@ Public Class logistica
 
     End Sub
     Private Sub cantidad_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles cantidad.KeyPress
-
-
-
-
 
         If Not IsNumeric(e.KeyChar) Then
             e.Handled = True
@@ -893,7 +906,7 @@ Public Class logistica
             adapter.SelectCommand = command
             adapter.Fill(op)
             opglobal = op
-            If op.Rows(0).Item("cajetas") = "a" And op.Rows(0).Item("cajetas") = "a" Then
+            If op.Rows(0).Item("cajetas") <= -1 And op.Rows(0).Item("master") <= -1 Then
                 valor = False
             Else
                 If Convert.ToDecimal(master.Text) <> "0" Then
@@ -942,4 +955,38 @@ Public Class logistica
 
     End Sub
 
+    Public Sub eliminarreserva(deposito As String, cantidad As Decimal, lote As String, ubicacion As String, ubicaciondes As String, depositodes As String, talla As String, envases As String, codigopro As String, caja As Int64, master As Int64)
+        Dim conexion As New SqlConnection("Data Source=192.168.0.158;Initial Catalog=reportes;Persist Security Info=True;User ID=sa;Password=frigopesca2223+")
+        Dim adapter As New SqlDataAdapter
+        posicion = 0
+        Dim command As New SqlCommand("SP_ELIMINARRESERVA", conexion)
+        command.CommandType = CommandType.StoredProcedure
+        Dim op As New DataTable()
+
+        Try
+            If DataGridView1.Rows.Count < 1 Then
+                MessageBox.Show("Debe agregar mínimo una fila")
+            Else
+                command.Parameters.AddWithValue("@usuario", txtuser.Text)
+                command.Parameters.AddWithValue("@deposito", deposito)
+                command.Parameters.AddWithValue("@cantidad", cantidad)
+                command.Parameters.AddWithValue("@lote", lote)
+                command.Parameters.AddWithValue("@ubicacion", ubicacion)
+                command.Parameters.AddWithValue("@ubicaciondes", ubicaciondes)
+                command.Parameters.AddWithValue("@depositodes", depositodes)
+                command.Parameters.AddWithValue("@talla", talla)
+                command.Parameters.AddWithValue("@envase", envases)
+                command.Parameters.AddWithValue("@codigoproducto", codigopro)
+                command.Parameters.AddWithValue("@cantidadcajeta", caja)
+                command.Parameters.AddWithValue("@cantidadmaster", master)
+                conexion.Open()
+                command.ExecuteNonQuery()
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString)
+        Finally
+            conexion.Dispose()
+            command.Dispose()
+        End Try
+    End Sub
 End Class
