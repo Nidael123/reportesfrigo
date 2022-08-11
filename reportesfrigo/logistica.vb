@@ -58,6 +58,10 @@ Public Class logistica
                 DEPOSITODESTINO.Items.Add(op2.Rows(posicion).Item("NOMBRE").ToString())
                 posicion = posicion + 1
             End While
+
+            DEPOSITOORIGEN.AutoCompleteMode = AutoCompleteMode.None
+            DEPOSITOORIGEN.AutoCompleteSource = AutoCompleteSource.ListItems
+
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         Finally
@@ -303,9 +307,9 @@ Public Class logistica
                         envase2 = "Master"
                     End If
 
-                    guardaritems(filas.Cells(10).Value.ToString, Convert.ToDecimal(filas.Cells(8).Value.ToString), filas.Cells(6).Value.ToString, filas.Cells(11).Value.ToString, filas.Cells(15).Value.ToString,
-                    filas.Cells(14).Value.ToString, filas.Cells(5).Value.ToString, envase2, filas.Cells(0).Value.ToString, Convert.ToInt64(filas.Cells(3).Value.ToString), Convert.ToInt64(filas.Cells(2).Value.ToString),
-                    filas.Cells(1).Value.ToString)
+                    'guardaritems(filas.Cells(10).Value.ToString, Convert.ToDecimal(filas.Cells(8).Value.ToString), filas.Cells(6).Value.ToString, filas.Cells(11).Value.ToString, filas.Cells(15).Value.ToString,
+                    'filas.Cells(14).Value.ToString, filas.Cells(5).Value.ToString, envase2, filas.Cells(0).Value.ToString, Convert.ToInt64(filas.Cells(3).Value.ToString), Convert.ToInt64(filas.Cells(2).Value.ToString),
+                    'filas.Cells(1).Value.ToString)
 
                     guardarusuario(filas.Cells(10).Value.ToString, Convert.ToDecimal(filas.Cells(8).Value.ToString), filas.Cells(6).Value.ToString, filas.Cells(11).Value.ToString, filas.Cells(15).Value.ToString,
                     filas.Cells(14).Value.ToString, filas.Cells(5).Value.ToString, envase2, filas.Cells(0).Value.ToString, Convert.ToInt64(filas.Cells(3).Value.ToString), Convert.ToInt64(filas.Cells(2).Value.ToString))
@@ -528,6 +532,7 @@ Public Class logistica
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
         If (DataGridView1.SelectedRows.Count > 0) Then
             Dim Row = DataGridView1.SelectedRows
 
@@ -627,25 +632,6 @@ Public Class logistica
         End Try
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         'Dim ops = New DataTable
 
         'Dim conexion As New SqlConnection("Data Source=192.168.0.158;Initial Catalog=reportes;Persist Security Info=True;User ID=sa;Password=frigopesca2223+")
@@ -698,6 +684,9 @@ Public Class logistica
                 comcodpro.Items.Add(op4.Rows(posicion).Item("codigoProducto").ToString())
                 posicion = posicion + 1
             End While
+            comboproductos.AutoCompleteMode = AutoCompleteMode.None
+            comboproductos.AutoCompleteSource = AutoCompleteSource.ListItems
+
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         Finally
@@ -736,13 +725,11 @@ Public Class logistica
                 ComboBox1.Items.Add(op6.Rows(posicion).Item("lote").ToString())
                 posicion = posicion + 1
             End While
-            'ComboBox1.AutoCompleteMode = AutoCompleteMode.Suggest
-            'ComboBox1.AutoCompleteSource = AutoCompleteSource.ListItems
             If (op6.Rows.Count = 0) Then
                 MessageBox.Show("No hay Lote asignado para esta orden")
             End If
         Catch ex As Exception
-            MessageBox.Show("Error al buscar los lotes")
+            MessageBox.Show("Error al buscar los lotes" + e.ToString)
         Finally
             conexion6.Dispose()
             command6.Dispose()

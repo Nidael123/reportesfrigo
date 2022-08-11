@@ -22,10 +22,10 @@ Partial Class logistica
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(logistica))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ordenes = New System.Windows.Forms.ComboBox()
@@ -90,6 +90,8 @@ Partial Class logistica
         '
         'ordenes
         '
+        Me.ordenes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.ordenes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ordenes.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.ordenes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.ordenes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -218,8 +220,9 @@ Partial Class logistica
         '
         'ComboBox1
         '
+        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -260,15 +263,16 @@ Partial Class logistica
         '
         'DEPOSITOORIGEN
         '
+        Me.DEPOSITOORIGEN.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.DEPOSITOORIGEN.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.DEPOSITOORIGEN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.DEPOSITOORIGEN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.DEPOSITOORIGEN.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.DEPOSITOORIGEN.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DEPOSITOORIGEN.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.DEPOSITOORIGEN.FormattingEnabled = True
         Me.DEPOSITOORIGEN.Location = New System.Drawing.Point(102, 25)
         Me.DEPOSITOORIGEN.Name = "DEPOSITOORIGEN"
-        Me.DEPOSITOORIGEN.Size = New System.Drawing.Size(136, 21)
+        Me.DEPOSITOORIGEN.Size = New System.Drawing.Size(185, 21)
         Me.DEPOSITOORIGEN.TabIndex = 27
         '
         'Label13
@@ -288,7 +292,7 @@ Partial Class logistica
         Me.UBICACIONORIGEN.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.UBICACIONORIGEN.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.UBICACIONORIGEN.FormattingEnabled = True
-        Me.UBICACIONORIGEN.Location = New System.Drawing.Point(251, 26)
+        Me.UBICACIONORIGEN.Location = New System.Drawing.Point(306, 25)
         Me.UBICACIONORIGEN.Name = "UBICACIONORIGEN"
         Me.UBICACIONORIGEN.Size = New System.Drawing.Size(121, 21)
         Me.UBICACIONORIGEN.TabIndex = 29
@@ -304,15 +308,16 @@ Partial Class logistica
         '
         'DEPOSITODESTINO
         '
+        Me.DEPOSITODESTINO.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.DEPOSITODESTINO.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.DEPOSITODESTINO.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.DEPOSITODESTINO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.DEPOSITODESTINO.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.DEPOSITODESTINO.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DEPOSITODESTINO.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.DEPOSITODESTINO.FormattingEnabled = True
-        Me.DEPOSITODESTINO.Location = New System.Drawing.Point(619, 115)
+        Me.DEPOSITODESTINO.Location = New System.Drawing.Point(586, 115)
         Me.DEPOSITODESTINO.Name = "DEPOSITODESTINO"
-        Me.DEPOSITODESTINO.Size = New System.Drawing.Size(121, 21)
+        Me.DEPOSITODESTINO.Size = New System.Drawing.Size(178, 21)
         Me.DEPOSITODESTINO.TabIndex = 31
         '
         'Label15
@@ -419,42 +424,42 @@ Partial Class logistica
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Uighur", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        DataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle21.Font = New System.Drawing.Font("Microsoft Uighur", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle21
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle22.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle22
         Me.DataGridView1.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.DataGridView1.Location = New System.Drawing.Point(10, 228)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Uighur", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black
-        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle23.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle23.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle23
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        DataGridViewCellStyle24.Font = New System.Drawing.Font("Microsoft Uighur", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle24.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.Black
+        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle24
         Me.DataGridView1.Size = New System.Drawing.Size(1348, 405)
         Me.DataGridView1.TabIndex = 42
         '
@@ -497,13 +502,14 @@ Partial Class logistica
         '
         'comboproductos
         '
+        Me.comboproductos.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.comboproductos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.comboproductos.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.comboproductos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboproductos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.comboproductos.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboproductos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.comboproductos.FormattingEnabled = True
-        Me.comboproductos.Location = New System.Drawing.Point(522, 25)
+        Me.comboproductos.Location = New System.Drawing.Point(599, 25)
         Me.comboproductos.Name = "comboproductos"
         Me.comboproductos.Size = New System.Drawing.Size(539, 21)
         Me.comboproductos.TabIndex = 46
@@ -523,13 +529,14 @@ Partial Class logistica
         '
         'comcodpro
         '
+        Me.comcodpro.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.comcodpro.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.comcodpro.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.comcodpro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comcodpro.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.comcodpro.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comcodpro.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.comcodpro.FormattingEnabled = True
-        Me.comcodpro.Location = New System.Drawing.Point(382, 25)
+        Me.comcodpro.Location = New System.Drawing.Point(473, 25)
         Me.comcodpro.Name = "comcodpro"
         Me.comcodpro.Size = New System.Drawing.Size(116, 21)
         Me.comcodpro.TabIndex = 48
