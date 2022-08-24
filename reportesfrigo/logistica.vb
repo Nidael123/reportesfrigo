@@ -339,10 +339,14 @@ Public Class logistica
         cantidad.Enabled = True
         combotalla.Items.Clear()
         ordenes.Items.Clear()
+        ordenes.Text = ""
         ComboBox1.Items.Clear()
+        ComboBox1.Text = ""
         combotalla.Text = ""
         ordenes.Text = ""
         tallamarcada.Text = ""
+        comcodpro.Text = ""
+        comboproductos.Text = ""
     End Sub
 
     Private Sub DEPOSITOORIGEN_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DEPOSITOORIGEN.SelectedIndexChanged
@@ -601,35 +605,7 @@ Public Class logistica
 
         TextBox1.Text = ComboBox1.Text
 
-        'CARGAR OP SEGUN EL LOTE 
-        Dim conexion1 As New SqlConnection("Data Source=192.168.0.158;Initial Catalog=reportes;Persist Security Info=True;User ID=sa;Password=frigopesca2223+")
-        Dim adapter1 As New SqlDataAdapter
-        Dim command1 As New SqlCommand("SP_INFOOP", conexion1)
-        command1.CommandType = CommandType.StoredProcedure
-        command1.Parameters.AddWithValue("@orden", ComboBox1.Text) ' Error al tomar los valores de nombre del combobox
-        Dim op1 As New DataTable()
-        posicion = 0
-        Try
-            conexion1.Open()
-            command1.ExecuteNonQuery()
-            adapter1.SelectCommand = command1
-            adapter1.Fill(op1)
-            While (posicion <= op1.Rows.Count - 1)
-                ordenes.Items.Add(op1.Rows(posicion).Item("descripcion").ToString())
-                posicion = posicion + 1
-            End While
-            'productonombre.Text = op1.Rows(0).Item("producto").ToString()
-            'descripcion.Text = op1.Rows(0).Item("descripcion").ToString()
-            'despacho.Text = op1.Rows(0).Item("despacho").ToString()
-            'serie.Text = op1.Rows(0).Item("talla").ToString()
-            'tallamarcada.Text = op1.Rows(0).Item("talla").ToString()
-            'unidad.Text = op1.Rows(0).Item("unidad").ToString()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        Finally
-            conexion1.Dispose()
-            command1.Dispose()
-        End Try
+
 
 
         'Dim ops = New DataTable
@@ -744,6 +720,40 @@ Public Class logistica
     Private Sub combotalla_SelectedIndexChanged(sender As Object, e As EventArgs) Handles combotalla.SelectedIndexChanged
         tallamarcada.Text = combotalla.Text
         cargarsaldos()
+        'CARGAR OP SEGUN EL LOTE 
+        Dim conexion1 As New SqlConnection("Data Source=192.168.0.158;Initial Catalog=reportes;Persist Security Info=True;User ID=sa;Password=frigopesca2223+")
+        Dim adapter1 As New SqlDataAdapter
+        Dim command1 As New SqlCommand("SP_INFOOP", conexion1)
+        command1.CommandType = CommandType.StoredProcedure
+        command1.Parameters.AddWithValue("@lote", ComboBox1.Text) ' Error al tomar los valores de nombre del combobox
+        command1.Parameters.AddWithValue("@talla", combotalla.Text)
+        command1.Parameters.AddWithValue("@codigoproducto", comcodpro.Text)
+        Dim op1 As New DataTable()
+        posicion = 0
+        Try
+            conexion1.Open()
+            command1.ExecuteNonQuery()
+            adapter1.SelectCommand = command1
+            adapter1.Fill(op1)
+            ordenes.Items.Clear()
+            While (posicion <= op1.Rows.Count - 1)
+
+                ordenes.Items.Add(op1.Rows(posicion).Item("descripcion").ToString())
+                posicion = posicion + 1
+            End While
+            'productonombre.Text = op1.Rows(0).Item("producto").ToString()
+            'descripcion.Text = op1.Rows(0).Item("descripcion").ToString()
+            'despacho.Text = op1.Rows(0).Item("despacho").ToString()
+            'serie.Text = op1.Rows(0).Item("talla").ToString()
+            'tallamarcada.Text = op1.Rows(0).Item("talla").ToString()
+            'unidad.Text = op1.Rows(0).Item("unidad").ToString()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        Finally
+            conexion1.Dispose()
+            command1.Dispose()
+        End Try
+
     End Sub
     Public Sub guardaritems(deposito As String, cantidad As Decimal, lote As String, ubicacion As String, ubicaciondes As String, depositodes As String, talla As String, envases As String, codigopro As String, cantidadcajetas As Int64, cantidadmas As Int64, producto As String)
         Dim conexion As New SqlConnection("Data Source=192.168.0.158;Initial Catalog=reportes;Persist Security Info=True;User ID=sa;Password=frigopesca2223+")
