@@ -5569,7 +5569,7 @@ Namespace reportesDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.SqlClient.SqlConnection()
-            Me._connection.ConnectionString = Global.reportesfrigo.My.MySettings.Default.reportesConnectionString
+            Me._connection.ConnectionString = Global.transferecia.My.MySettings.Default.reportesConnectionString
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5847,7 +5847,7 @@ Namespace reportesDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.SqlClient.SqlConnection()
-            Me._connection.ConnectionString = Global.reportesfrigo.My.MySettings.Default.reportesConnectionString
+            Me._connection.ConnectionString = Global.transferecia.My.MySettings.Default.reportesConnectionString
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6178,7 +6178,7 @@ Namespace reportesDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.SqlClient.SqlConnection()
-            Me._connection.ConnectionString = Global.reportesfrigo.My.MySettings.Default.reportesConnectionString
+            Me._connection.ConnectionString = Global.transferecia.My.MySettings.Default.reportesConnectionString
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6497,7 +6497,7 @@ Namespace reportesDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.SqlClient.SqlConnection()
-            Me._connection.ConnectionString = Global.reportesfrigo.My.MySettings.Default.reportesConnectionString
+            Me._connection.ConnectionString = Global.transferecia.My.MySettings.Default.reportesConnectionString
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6829,7 +6829,7 @@ Namespace reportesDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.SqlClient.SqlConnection()
-            Me._connection.ConnectionString = Global.reportesfrigo.My.MySettings.Default.reportesConnectionString
+            Me._connection.ConnectionString = Global.transferecia.My.MySettings.Default.reportesConnectionString
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7253,7 +7253,7 @@ Namespace reportesDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.SqlClient.SqlConnection()
-            Me._connection.ConnectionString = Global.reportesfrigo.My.MySettings.Default.reportesConnectionString
+            Me._connection.ConnectionString = Global.transferecia.My.MySettings.Default.reportesConnectionString
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7551,7 +7551,7 @@ Namespace reportesDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.SqlClient.SqlConnection()
-            Me._connection.ConnectionString = Global.reportesfrigo.My.MySettings.Default.reportesConnectionString
+            Me._connection.ConnectionString = Global.transferecia.My.MySettings.Default.reportesConnectionString
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7789,7 +7789,7 @@ Namespace reportesDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.SqlClient.SqlConnection()
-            Me._connection.ConnectionString = Global.reportesfrigo.My.MySettings.Default.reportesConnectionString
+            Me._connection.ConnectionString = Global.transferecia.My.MySettings.Default.reportesConnectionString
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

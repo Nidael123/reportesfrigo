@@ -466,7 +466,7 @@ Partial Class logistica
         'Button3
         '
         Me.Button3.BackColor = System.Drawing.Color.Transparent
-        Me.Button3.Image = Global.reportesfrigo.My.Resources.Resources._2413539
+        Me.Button3.Image = Global.transferecia.My.Resources.Resources._2413539
         Me.Button3.Location = New System.Drawing.Point(10, 9)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(53, 62)
@@ -475,7 +475,7 @@ Partial Class logistica
         '
         'Button2
         '
-        Me.Button2.Image = Global.reportesfrigo.My.Resources.Resources.borraf1
+        Me.Button2.Image = Global.transferecia.My.Resources.Resources.borraf1
         Me.Button2.Location = New System.Drawing.Point(101, 161)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(44, 51)
@@ -484,7 +484,7 @@ Partial Class logistica
         '
         'Button1
         '
-        Me.Button1.Image = Global.reportesfrigo.My.Resources.Resources.nueva_fila
+        Me.Button1.Image = Global.transferecia.My.Resources.Resources.nueva_fila
         Me.Button1.Location = New System.Drawing.Point(37, 161)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(43, 51)

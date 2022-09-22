@@ -14,14 +14,14 @@
 
                     If contra.Equals(txtpass.Text) = True Then
 
-                        If area.Equals(1) Then
+                        If area.Equals(2) Then
 
                             TextBox1.Text = txtuser.Text
-                            rrhh.Show()
-                            rrhh.user.Text = TextBox1.Text
+                            'rrhh.Show()
+                            'rrhh.user.Text = TextBox1.Text
                             Hide()
                         ElseIf (area.Equals(2)) Then
-                            rol.Show()
+                            'rol.Show()
                             Hide()
                         Else
                             logistica.Show()

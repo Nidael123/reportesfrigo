@@ -80,7 +80,7 @@ Partial Class Form1
         '
         'Label3
         '
-        Me.Label3.Image = Global.reportesfrigo.My.Resources.Resources.logo
+        Me.Label3.Image = Global.transferecia.My.Resources.Resources.logo
         Me.Label3.Location = New System.Drawing.Point(12, 1)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(315, 58)
@@ -89,7 +89,7 @@ Partial Class Form1
         'ingresar
         '
         Me.ingresar.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.ingresar.Image = Global.reportesfrigo.My.Resources.Resources._891372
+        Me.ingresar.Image = Global.transferecia.My.Resources.Resources._891372
         Me.ingresar.Location = New System.Drawing.Point(143, 143)
         Me.ingresar.Margin = New System.Windows.Forms.Padding(0)
         Me.ingresar.Name = "ingresar"

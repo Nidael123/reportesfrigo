@@ -6,9 +6,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AB00B542-4578-4196-8E84-2CCF0BF4C676}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>reportesfrigo.My.MyApplication</StartupObject>
-    <RootNamespace>reportesfrigo</RootNamespace>
-    <AssemblyName>reportesfrigo</AssemblyName>
+    <StartupObject>transferecia.My.MyApplication</StartupObject>
+    <RootNamespace>transferecia</RootNamespace>
+    <AssemblyName>transferencia</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -16,7 +16,7 @@
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\DQUINONEZ\Desktop\Nueva carpeta\</PublishUrl>
+    <PublishUrl>C:\Users\DQUINONEZ\Desktop\MILTON\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -26,7 +26,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -39,7 +39,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>reportesfrigo.xml</DocumentationFile>
+    <DocumentationFile>transferencia.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -49,7 +49,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>reportesfrigo.xml</DocumentationFile>
+    <DocumentationFile>transferencia.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -155,12 +155,6 @@
     <Compile Include="logistica.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="reportehojamovi.Designer.vb">
-      <DependentUpon>reportehojamovi.vb</DependentUpon>
-    </Compile>
-    <Compile Include="reportehojamovi.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="reporteorigen.Designer.vb">
       <DependentUpon>reporteorigen.vb</DependentUpon>
     </Compile>
@@ -184,12 +178,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="reportepeso.Designer.vb">
-      <DependentUpon>reportepeso.vb</DependentUpon>
-    </Compile>
-    <Compile Include="reportepeso.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="reportesDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -208,18 +196,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>reportesDataSet2.xsd</DependentUpon>
     </Compile>
-    <Compile Include="rol.Designer.vb">
-      <DependentUpon>rol.vb</DependentUpon>
-    </Compile>
-    <Compile Include="rol.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="rrhh.Designer.vb">
-      <DependentUpon>rrhh.vb</DependentUpon>
-    </Compile>
-    <Compile Include="rrhh.vb">
-      <SubType>Form</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
@@ -228,9 +204,6 @@
     <EmbeddedResource Include="inforigen.rdlc" />
     <EmbeddedResource Include="logistica.resx">
       <DependentUpon>logistica.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="reportehojamovi.resx">
-      <DependentUpon>reportehojamovi.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="reporteorigen.resx">
       <DependentUpon>reporteorigen.vb</DependentUpon>
@@ -243,15 +216,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Report1.rdlc" />
-    <EmbeddedResource Include="reportepeso.resx">
-      <DependentUpon>reportepeso.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="rol.resx">
-      <DependentUpon>rol.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="rrhh.resx">
-      <DependentUpon>rrhh.vb</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="DataSet1.xsc">

@@ -4,7 +4,7 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="reportesConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="reportesConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.reportesfrigo.My.MySettings.GlobalReference.Default.reportesConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="reportesConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="reportesConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.transferecia.My.MySettings.GlobalReference.Default.reportesConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="HOJAMDATATableAdapter" GeneratorDataComponentClassName="HOJAMDATATableAdapter" Name="HOJAMDATA" UserDataComponentName="HOJAMDATATableAdapter">
@@ -147,7 +147,7 @@
   <xs:element name="reportesDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="reportesDataSet" msprop:Generator_UserDSName="reportesDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="HOJAMDATA" msprop:Generator_TableClassName="HOJAMDATADataTable" msprop:Generator_TableVarName="tableHOJAMDATA" msprop:Generator_RowChangedName="HOJAMDATARowChanged" msprop:Generator_TablePropName="HOJAMDATA" msprop:Generator_RowDeletingName="HOJAMDATARowDeleting" msprop:Generator_RowChangingName="HOJAMDATARowChanging" msprop:Generator_RowEvHandlerName="HOJAMDATARowChangeEventHandler" msprop:Generator_RowDeletedName="HOJAMDATARowDeleted" msprop:Generator_RowClassName="HOJAMDATARow" msprop:Generator_UserTableName="HOJAMDATA" msprop:Generator_RowEvArgName="HOJAMDATARowChangeEvent">
+        <xs:element name="HOJAMDATA" msprop:Generator_TableClassName="HOJAMDATADataTable" msprop:Generator_TableVarName="tableHOJAMDATA" msprop:Generator_TablePropName="HOJAMDATA" msprop:Generator_RowDeletingName="HOJAMDATARowDeleting" msprop:Generator_RowChangingName="HOJAMDATARowChanging" msprop:Generator_RowEvHandlerName="HOJAMDATARowChangeEventHandler" msprop:Generator_RowDeletedName="HOJAMDATARowDeleted" msprop:Generator_UserTableName="HOJAMDATA" msprop:Generator_RowChangedName="HOJAMDATARowChanged" msprop:Generator_RowEvArgName="HOJAMDATARowChangeEvent" msprop:Generator_RowClassName="HOJAMDATARow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="FECHAINGRESO" msprop:Generator_ColumnVarNameInTable="columnFECHAINGRESO" msprop:Generator_ColumnPropNameInRow="FECHAINGRESO" msprop:Generator_ColumnPropNameInTable="FECHAINGRESOColumn" msprop:Generator_UserColumnName="FECHAINGRESO" minOccurs="0">
@@ -228,7 +228,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ORIGENMP" msprop:Generator_TableClassName="ORIGENMPDataTable" msprop:Generator_TableVarName="tableORIGENMP" msprop:Generator_TablePropName="ORIGENMP" msprop:Generator_RowDeletingName="ORIGENMPRowDeleting" msprop:Generator_RowChangingName="ORIGENMPRowChanging" msprop:Generator_RowEvHandlerName="ORIGENMPRowChangeEventHandler" msprop:Generator_RowDeletedName="ORIGENMPRowDeleted" msprop:Generator_UserTableName="ORIGENMP" msprop:Generator_RowChangedName="ORIGENMPRowChanged" msprop:Generator_RowEvArgName="ORIGENMPRowChangeEvent" msprop:Generator_RowClassName="ORIGENMPRow">
+        <xs:element name="ORIGENMP" msprop:Generator_TableClassName="ORIGENMPDataTable" msprop:Generator_TableVarName="tableORIGENMP" msprop:Generator_RowChangedName="ORIGENMPRowChanged" msprop:Generator_TablePropName="ORIGENMP" msprop:Generator_RowDeletingName="ORIGENMPRowDeleting" msprop:Generator_RowChangingName="ORIGENMPRowChanging" msprop:Generator_RowEvHandlerName="ORIGENMPRowChangeEventHandler" msprop:Generator_RowDeletedName="ORIGENMPRowDeleted" msprop:Generator_RowClassName="ORIGENMPRow" msprop:Generator_UserTableName="ORIGENMP" msprop:Generator_RowEvArgName="ORIGENMPRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="destiantarios" msprop:Generator_ColumnVarNameInTable="columndestiantarios" msprop:Generator_ColumnPropNameInRow="destiantarios" msprop:Generator_ColumnPropNameInTable="destiantariosColumn" msprop:Generator_UserColumnName="destiantarios" minOccurs="0">
